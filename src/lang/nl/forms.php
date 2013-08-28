@@ -13,4 +13,5 @@ return [
 	'dbprefix' => 'Database voorvoegsel',
 	'username' => 'Gebruikersnaam',
 	'password' => 'Wachtwoord',
+	'save' => 'Opslaan',
 ];
