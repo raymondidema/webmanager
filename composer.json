@@ -1,0 +1,25 @@
+{
+    "name": "raymondidema/webmanager",
+    "description": "1.0.0",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Raymond Idema",
+            "email": "raymond@design-code.nl"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.0.x"
+    },
+    "autoload": {
+        "classmap": [
+            "src/migrations",
+            "src/installation"
+        ],
+        "psr-0": {
+            "Raymondidema\\Webmanager": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
