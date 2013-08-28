@@ -16,7 +16,8 @@
     "autoload": {
         "classmap": [
             "src/migrations",
-            "src/installation"
+            "src/installation",
+            "src/models"
         ],
         "psr-0": {
             "Raymondidema\\Webmanager": "src/"
