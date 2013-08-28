@@ -7,7 +7,9 @@ class Install extends Eloquent
 {
 	protected $table = 'users';
 
-	public function database()
+	protected $fillable = ['email','password','username','preferences','activated'];
+
+	public function table()
 	{
 		Schema::dropIfExists('users');
 		Schema::create('users', function($table)

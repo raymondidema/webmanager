@@ -4,11 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 	<title>Installatie webmanager</title>
-	<link rel="stylesheet" href="/assets/twitter/css/bootstrap.css">
-	<!-- <link rel="stylesheet" href="/assets/twitter/css/bootstrap-theme.css"> -->
-	<link rel="stylesheet" href="/assets/stylesheet.css">
-	
-	
+	{{ HTML::style('/packages/raymondidema/webmanager/twitter/css/bootstrap.css') }}
+	{{ HTML::style('/packages/raymondidema/webmanager/stylesheet.css') }}
 </head>
 <body style="padding-top:50px;">
 	
@@ -67,8 +64,8 @@
 			</div>
 		</div>
 	</div>
-	<script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-	<script src="/assets/twitter/js/bootstrap.min.js"></script>
+	{{ HTML::script('http://code.jquery.com/jquery-1.10.1.min.js') }}
+	{{ HTML::script('/packages/raymondidema/webmanager/twitter/js/bootstrap.min.js') }}
 	<script>
 		$('#language').change(function()
 		{

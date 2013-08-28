@@ -1,8 +1,6 @@
 <?php namespace Raymondidema\Webmanager;
 
 use Illuminate\Support\ServiceProvider;
-use App;
-use Cookie;
 
 class WebmanagerServiceProvider extends ServiceProvider {
 
@@ -20,22 +18,37 @@ class WebmanagerServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('raymondidema/webmanager');
-		if(file_exists(__DIR__.'/../../routes/routes.php'))
-			require(__DIR__.'/../../routes/routes.php');
-
 		$app = $this->app;
 
-		$this->app->before(function() use ($app)
+		$setting = $this->app->make('setting');
+
+		$app['config']->set('database', $setting->get('app.database'));
+		$app['config']->set('mail', $setting->get('app.mail'));
+
+		$this->package('raymondidema/webmanager');
+
+		if(file_exists(__DIR__.'/../../routes/routes.php'))
+			require(__DIR__.'/../../routes/routes.php');
+		
+
+		
+
+		$this->app->before(function() use ($app,$setting)
 		{
-			if($app['config']->get('webmanager::install', true))
+
+			if(count($setting->get('install')) == 0)
 			{
-				if(!\File::isDirectory(app_path().'/config/production') && !\Session::get('install'))
-				{
-					\Session::put('install', true);
-					return \Redirect::to('installation');
-				}
+				$setting->set('install',1);
+				$setting->set('install_started','true');
+				return $app['redirect']->to('installation');
 			};
+			// if($app['config']->get('webmanager::install', true))
+			// {
+			// 	if(!\File::isDirectory(app_path().'/config/production') && !\Session::get('install'))
+			// 	{
+			// 		return \Redirect::to('installation');
+			// 	}
+			// };
 		});
 	}
 
@@ -47,6 +60,7 @@ class WebmanagerServiceProvider extends ServiceProvider {
 	public function register()
 	{
 		//
+		$this->app->register('Philf\Setting\SettingServiceProvider');
 	}
 
 	/**
